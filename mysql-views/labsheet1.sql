@@ -75,3 +75,8 @@ VALUES
 ('pr02', 'l03'),
 ('pr01', 'l03'),
 ('pr03', 'l03');
+
+ALTER TABLE academic_staff
+ADD CONSTRAINT fk_department
+foreign key(l_d_id)
+REFERENCES department(d_id);
