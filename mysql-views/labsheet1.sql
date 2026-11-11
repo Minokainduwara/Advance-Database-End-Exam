@@ -76,7 +76,12 @@ VALUES
 ('pr01', 'l03'),
 ('pr03', 'l03');
 
+
+-- 03 ----
 ALTER TABLE academic_staff
 ADD CONSTRAINT fk_department
 foreign key(l_d_id)
 REFERENCES department(d_id);
+
+-- 04 ----
+SELECT * FROM academic_staff;
