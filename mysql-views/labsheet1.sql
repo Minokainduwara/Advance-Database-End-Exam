@@ -85,3 +85,12 @@ REFERENCES department(d_id);
 
 -- 04 ----
 SELECT * FROM academic_staff;
+
+-- 05 ----
+SET SQL_SAFE_UPDATES = 0;
+
+UPDATE department
+SET d_name = "BST"
+WHERE d_name = "BT";
+
+SET SQL_SAFE_UPDATES = 0;
