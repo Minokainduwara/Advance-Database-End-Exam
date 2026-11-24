@@ -1,11 +1,11 @@
 
 
--- 1 ----
+-- 4 ----
 CREATE DATABASE pr02;
 USE pr02;
 
 
--- 2 ----
+-- 5 ----
 CREATE TABLE customers (
     customer_id INT PRIMARY KEY,
     first_name  VARCHAR(50) NOT NULL,
@@ -34,7 +34,7 @@ VALUES
  
  
  
- -- 3 method 1 ----
+ -- 6 method 1 ----
  
 CREATE OR REPLACE VIEW vw_customer_names AS
 SELECT
@@ -50,7 +50,7 @@ LIMIT 10;
 
 
 
--- 3 Methos 2 Using an Stored Procedure --
+-- 6 Method 2 Using an Stored Procedure --
 DELIMITER //
 CREATE procedure get_customer_fname()
 BEGIN 
@@ -66,7 +66,7 @@ DELIMITER ;
 CALL get_customer_fname();
 
 
--- 3 method 3 using scalar function take one customer name and give the full name---
+-- 6 method 3 using scalar function take one customer name and give the full name---
 DELIMITER //
 
 CREATE FUNCTION fn_GetCustomerFullName(p_customer_Id INT)
@@ -91,11 +91,49 @@ SELECT
 FROM customers
 LIMIT 10;
     
+    
+-- 7 ----
+CREATE TABLE Employee (
+    ID      INT PRIMARY KEY,
+    NAME    VARCHAR(50) NOT NULL,
+    AGE     INT NOT NULL,
+    ADDRESS VARCHAR(100) NOT NULL,
+    SALARY  DECIMAL(10, 2) NOT NULL
+);
+
+INSERT INTO Employee (ID, NAME, AGE, ADDRESS, SALARY)
+VALUES
+    (1, 'Ramesh',   32, 'Ahmedabad', 2000.00),
+    (2, 'Khilan',   25, 'Delhi',     1500.00),
+    (3, 'kaushik',  23, 'Kota',      2000.00),
+    (4, 'Chaitali', 25, 'Mumbai',    6500.00),
+    (5, 'Hardik',   27, 'Bhopal',    8500.00),
+    (6, 'Komal',    22, 'MP',        4500.00);
 
 
+-- 8 ---
+DELIMITER //
+CREATE FUNCTION get_emp_avg()
+RETURNS DECIMAL(10,2)
+deterministic
+reads sql data
+BEGIN
+	DECLARE avg_salary DECIMAL(10,2);
+    
+    SELECT avg(SALARY)
+    INTO avg_salary
+    from Employee;
+    
+    RETURN avg_salary;
+END //
 
- 
- 
+DELIMITER ;
+
+-- Test --
+SELECT get_emp_avg() AS AverageSalary;
+
+
+    
  
  
  
