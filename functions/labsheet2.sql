@@ -39,7 +39,7 @@ VALUES
 CREATE OR REPLACE VIEW vw_customer_names AS
 SELECT
 	customer_id,
-    concat_ws('',first_name,last_name) AS full_name
+    concat_ws(' ',first_name,last_name) AS full_name
 FROM customers;
 
 -- Output (first 10 rows matching your sample)
@@ -47,7 +47,26 @@ SELECT customer_id,full_name
 FROM vw_customer_names
 LIMIT 10;
 
+
+
+
 -- 3 Methos 2 Using an Stored Procedure --
+DELIMITER //
+CREATE procedure get_customer_fname()
+BEGIN 
+	SELECT
+    	customer_id,
+		concat_ws(' ',first_name,last_name) AS full_name
+        FROM customers
+        limit 10;
+END //
+
+DELIMITER ;
+
+CALL get_customer_fname();
+
+
+
  
  
  
