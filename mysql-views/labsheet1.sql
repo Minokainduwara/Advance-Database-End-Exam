@@ -94,3 +94,101 @@ SET d_name = "BST"
 WHERE d_name = "BT";
 
 SET SQL_SAFE_UPDATES = 0;
+
+
+SHOW tables;
+
+-- 7 --
+SELECT * FROM department;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM department 
+where d_name = 'PQT';
+
+-- 8 ---
+SELECT l_name,l_salary from academic_staff
+WHERE l_desig = 'Senior Lecturer' ;
+
+-- 9 --
+SELECT
+    pr_id,
+    pr_name,
+    pr_budget,
+    pr_budget * 0.70 AS university_grant
+FROM project;
+
+-- 10 ---
+SELECT l_name,l_allowance
+FROM academic_staff
+WHERE l_allowance = (SELECT MIN(l_allowance) FROM academic_staff);
+
+
+-- 11 ---
+DESC academic_staff;
+DESC project;
+
+SELECT DISTINCT
+	a.l_name,
+    a.l_desig,
+    a.l_id,
+    p.pr_supervisor
+FROM academic_staff a
+JOIN project p 
+	ON a.l_id = p.pr_supervisor;
+    
+    
+-- 12 ---
+SELECT COUNT(w.w_l_id) AS 'Researchers Count'
+FROM work w
+JOIN project p ON
+	w.w_pr_id = p.pr_id
+WHERE p.pr_name = 'Eagle Eye';
+
+
+-- 13 --
+SELECT a.l_name
+FROM academic_staff a
+JOIN work w 
+	ON a.l_id = w.w_l_id
+GROUP BY a.l_id, a.l_name
+HAVING COUNT(w.w_pr_id) > 1;
+
+
+-- 14 ---
+CREATE VIEW all_projects AS
+SELECT
+    p.pr_id,
+    p.pr_name,
+    p.pr_budget,
+    d.d_name
+FROM project p
+JOIN department d 
+	ON p.pr_d_id = d.d_id;
+    
+SELECT * FROM all_projects;
+
+
+-- 15 --
+DELIMITER //
+
+CREATE procedure academic_members_for_project(
+	IN project_id CHAR(4)
+)
+BEGIN
+	SELECT
+		a.l_id,
+        a.l_name,
+        a.l_desig,
+        a.l_salary,
+        a.l_allowance,
+        d.d_name
+	FROM work w
+    JOIN academic_staff a
+		ON w.w_l_id = a.l_id
+	JOIN department d
+        ON a.l_d_id = d.d_id
+	WHERE w.w_pr_id = project_id;
+END //
+
+DELIMITER ;
+
+CALL academic_members_for_project('pr01');
