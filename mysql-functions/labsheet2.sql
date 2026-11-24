@@ -184,10 +184,68 @@ DELIMITER ;
 -- Test: Qty 3, Unit Price 25.00, 15% discount (0.15) -> 63.75
 SELECT fn_ComputeLineTot(3, 25.00, 0.15) AS TotalPrice;
 
-    
+
+
+-- 11 ----
+
+CREATE OR REPLACE VIEW vw_ny_customers AS
+SELECT
+    customer_id,
+    first_name,
+    last_name,
+    phone,
+    email,
+    street,
+    city,
+    state,
+    zip_code
+FROM customers
+WHERE state IN ('NY', 'New York');
+
+-- Test
+SELECT * FROM vw_ny_customers;
  
  
- 
+-- 13 --
+
+DELIMITER //
+
+CREATE PROCEDURE sp_GetEmployeeByID(IN p_id INT)
+BEGIN
+    SELECT
+        NAME,
+        SALARY
+    FROM Employee
+    WHERE ID = p_id;
+END //
+
+DELIMITER ;
+
+-- Test
+CALL sp_GetEmployeeByID(4);
+
+-- 14 -- 
+
+DROP PROCEDURE IF EXISTS sp_GetEmployeeByID;
+
+DELIMITER //
+
+CREATE PROCEDURE sp_GetEmployeeByAgeRange(
+    IN p_min_age INT,
+    IN p_max_age INT
+)
+BEGIN
+    SELECT
+        NAME,
+        SALARY
+    FROM Employee
+    WHERE AGE BETWEEN p_min_age AND p_max_age;
+END //
+
+DELIMITER ;
+
+-- Test
+CALL sp_GetEmployeeByAgeRange(23, 27);
  
  
  
