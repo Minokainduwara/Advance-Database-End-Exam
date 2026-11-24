@@ -133,6 +133,57 @@ DELIMITER ;
 SELECT get_emp_avg() AS AverageSalary;
 
 
+
+
+-- 9 method 1 ---
+
+DELIMITER //
+
+CREATE PROCEDURE sp_GetAboveAverageEmployees()
+BEGIN
+    SELECT
+        ID,
+        NAME,
+        SALARY
+    FROM Employee
+    WHERE SALARY >= (SELECT AVG(SALARY) FROM Employee);
+END //
+
+DELIMITER ;
+
+-- Test
+CALL sp_GetAboveAverageEmployees();
+
+-- 9 method 2 ---
+
+SELECT 
+	ID,
+	NAME,
+	SALARY
+FROM Employee
+WHERE SALARY >= get_emp_avg();
+
+
+-- 10 ---
+DELIMITER //
+
+CREATE FUNCTION fn_ComputeLineTot(
+	p_quantity   INT,
+    p_unit_price DECIMAL(10, 2),
+    p_discount   DECIMAL(5, 4)
+)
+RETURNS DECIMAL(10,2)
+deterministic
+reads sql data
+BEGIN
+	RETURN ROUND(p_quantity * p_unit_price * (1.0 - COALESCE(p_discount, 0.0)), 2);
+END //
+
+DELIMITER ;
+
+-- Test: Qty 3, Unit Price 25.00, 15% discount (0.15) -> 63.75
+SELECT fn_ComputeLineTot(3, 25.00, 0.15) AS TotalPrice;
+
     
  
  
