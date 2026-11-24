@@ -66,6 +66,33 @@ DELIMITER ;
 CALL get_customer_fname();
 
 
+-- 3 method 3 using scalar function take one customer name and give the full name---
+DELIMITER //
+
+CREATE FUNCTION fn_GetCustomerFullName(p_customer_Id INT)
+RETURNS VARCHAR(105)
+deterministic
+reads sql data
+BEGIN
+	DECLARE v_full_name varchar(105);
+    
+    SELECT concat_ws(' ',first_name,last_name) INTO v_full_name
+    from customers
+    where customer_id = p_customer_Id;
+    RETURN v_full_name;
+END //
+
+DELIMITER ;
+
+-- Use it alongside customer_id
+SELECT
+    customer_id,
+    fn_GetCustomerFullName(customer_id) AS Name
+FROM customers
+LIMIT 10;
+    
+
+
 
  
  
