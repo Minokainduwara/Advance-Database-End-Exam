@@ -12,7 +12,7 @@ Each topic lives in its own folder with theory, SQL scripts, and practical examp
 | `mysql-functions/` | Built-in & user-defined MySQL functions with examples | [function.md](mysql-functions/function.md) |
 | `mysql-index/` | Index types, creation, optimization, and EXPLAIN plans | [index.md](mysql-index/index.md) |
 | `mysql-procedures/` | Stored procedures, parameters, handlers, and transactions | [procedure.md](mysql-procedures/procedure.md) |
-| `mysql-triggers/` | Database triggers labsheet | [labsheet07.sql](mysql-triggers/labsheet07.sql) |
+| `mysql-triggers/` | Database triggers labsheet | [triggers.md](mysql-triggers/triggers.md) |
 | `mysql-views/` | Views, updatable views, and best practices | [view.md](mysql-views/view.md) |
 
 ---
@@ -44,6 +44,7 @@ Create procedures with IN/OUT/INOUT parameters, error handlers, cursors, loops, 
 Practice trigger creation and usage with the student database labsheet.
 
 👉 **[Go to mysql-triggers/](mysql-triggers/)**  
+📄 [Read triggers.md](mysql-triggers/triggers.md)  
 📜 [View labsheet07.sql](mysql-triggers/labsheet07.sql)
 
 ### 🔹 MySQL Views
@@ -87,7 +88,7 @@ Create simple, joined, aggregated, and updatable views. Learn about read-only vi
 | **Functions** | Built-in functions, user-defined functions, `CREATE FUNCTION`, `RETURN` | `labsheet2.sql` |
 | **Indexes** | B+ Tree, unique/composite/full-text indexes, `EXPLAIN`, covering indexes | `Index.sql` |
 | **Procedures** | `CREATE PROCEDURE`, `IN/OUT/INOUT` params, handlers, transactions | `labsheet.sql` |
-| **Triggers** | Trigger events (`BEFORE`/`AFTER` `INSERT`/`UPDATE`/`DELETE`) | `labsheet07.sql` |
+| **Triggers** | Trigger events (`BEFORE`/`AFTER` `INSERT`/`UPDATE`/`DELETE`) | [triggers.md](mysql-triggers/triggers.md), `labsheet07.sql` |
 | **Views** | Virtual tables, updatable views, `WITH CHECK OPTION` | `labsheet1.sql` |
 
 ---
