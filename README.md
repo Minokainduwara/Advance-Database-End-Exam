@@ -1,6 +1,6 @@
 # 🗄️ Advance Database — MySQL Labs Collection
 
-A comprehensive collection of MySQL advanced database labs covering **Functions, Indexes, Stored Procedures, Triggers, and Views**.  
+A comprehensive collection of MySQL advanced database labs covering **Functions, Indexes, Stored Procedures, Triggers, Events, and Views**.  
 Each topic lives in its own folder with theory, SQL scripts, and practical examples.
 
 ---
