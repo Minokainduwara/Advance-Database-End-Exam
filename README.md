@@ -13,6 +13,7 @@ Each topic lives in its own folder with theory, SQL scripts, and practical examp
 | `mysql-index/` | Index types, creation, optimization, and EXPLAIN plans | [index.md](mysql-index/index.md) |
 | `mysql-procedures/` | Stored procedures, parameters, handlers, and transactions | [procedure.md](mysql-procedures/procedure.md) |
 | `mysql-triggers/` | Database triggers labsheet | [triggers.md](mysql-triggers/triggers.md) |
+| `mysql-events/` | Scheduled events and the Event Scheduler | [events.md](mysql-events/events.md) |
 | `mysql-views/` | Views, updatable views, and best practices | [view.md](mysql-views/view.md) |
 
 ---
@@ -47,6 +48,13 @@ Practice trigger creation and usage with the student database labsheet.
 📄 [Read triggers.md](mysql-triggers/triggers.md)  
 📜 [View labsheet07.sql](mysql-triggers/labsheet07.sql)
 
+### 🔹 MySQL Events
+Create scheduled events that run automatically with the MySQL Event Scheduler.
+
+👉 **[Go to mysql-events/](mysql-events/)**  
+📄 [Read events.md](mysql-events/events.md)  
+📜 [View labsheet.sql](mysql-events/labsheet.sql)
+
 ### 🔹 MySQL Views
 Create simple, joined, aggregated, and updatable views. Learn about read-only views and best practices.
 
@@ -61,7 +69,7 @@ Create simple, joined, aggregated, and updatable views. Learn about read-only vi
 ### Prerequisites
 - [MySQL Server](https://dev.mysql.com/downloads/) 8.0+
 - [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) or any MySQL client
-- A MySQL user with privileges to create databases, tables, procedures, functions, triggers, and views
+- A MySQL user with privileges to create databases, tables, procedures, functions, triggers, events, and views
 
 ### How to Run
 1. **Clone the repository**
@@ -89,6 +97,7 @@ Create simple, joined, aggregated, and updatable views. Learn about read-only vi
 | **Indexes** | B+ Tree, unique/composite/full-text indexes, `EXPLAIN`, covering indexes | `Index.sql` |
 | **Procedures** | `CREATE PROCEDURE`, `IN/OUT/INOUT` params, handlers, transactions | `labsheet.sql` |
 | **Triggers** | Trigger events (`BEFORE`/`AFTER` `INSERT`/`UPDATE`/`DELETE`) | [triggers.md](mysql-triggers/triggers.md), `labsheet07.sql` |
+| **Events** | Scheduled events, `event_scheduler`, one-time and recurring execution | [events.md](mysql-events/events.md), `labsheet.sql` |
 | **Views** | Virtual tables, updatable views, `WITH CHECK OPTION` | `labsheet1.sql` |
 
 ---
